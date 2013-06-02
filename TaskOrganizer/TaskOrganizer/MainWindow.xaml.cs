@@ -78,6 +78,7 @@ namespace TaskOrganizer
             catch (Exception ex)
             {
                 //No more tasks in list, hide controls
+                labelWelcome.Visibility = System.Windows.Visibility.Visible;
                 gridContent.Visibility = System.Windows.Visibility.Hidden;
             }
         }
@@ -90,6 +91,8 @@ namespace TaskOrganizer
         }
         private void expanderDetails_Collapsed(object sender, RoutedEventArgs e)
         {
+            currentTask.details = textBoxDetails.Text;
+            textBlockDetails.Text = textBoxDetails.Text;
             textBlockDetails.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -101,6 +104,8 @@ namespace TaskOrganizer
         }
         private void expanderDesc_Collapsed(object sender, RoutedEventArgs e)
         {
+            currentTask.description = textBoxDesc.Text;
+            textBlockDesc.Text = textBoxDesc.Text;
             textBlockDesc.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -185,18 +190,22 @@ namespace TaskOrganizer
         private void radioButtonPlanning_Checked(object sender, RoutedEventArgs e)
         {
             currentTask.status = "Planning";
+            expanderStatus.Header = "Planning";
         }
         private void radioButtonInProgress_Checked(object sender, RoutedEventArgs e)
         {
             currentTask.status = "In Progress";
+            expanderStatus.Header = "In Progress";
         }
         private void radioButtonBlocked_Checked(object sender, RoutedEventArgs e)
         {
             currentTask.status = "Blocked";
+            expanderStatus.Header = "Blocked";
         }
         private void radioButtonFinished_Checked(object sender, RoutedEventArgs e)
         {
             currentTask.status = "Finished";
+            expanderStatus.Header = "Finished";
         }
 
         //Delete Task button
@@ -365,6 +374,16 @@ namespace TaskOrganizer
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             save();
+        }
+
+        private void textBoxDetails_TextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            currentTask.details = textBoxDetails.Text;
+        }
+
+        private void textBoxDesc_TextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            currentTask.description = textBoxDesc.Text;
         }
     }
 }
