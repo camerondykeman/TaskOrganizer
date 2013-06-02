@@ -53,6 +53,7 @@ namespace TaskOrganizer
                 save();
                 //make sure controls are visible
                 gridContent.Visibility = System.Windows.Visibility.Visible;
+                labelWelcome.Visibility = System.Windows.Visibility.Hidden;
                 //close expanders
                 expanderDesc.IsExpanded = false;
                 expanderDetails.IsExpanded = false;
